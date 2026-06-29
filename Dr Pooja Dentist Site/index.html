@@ -1,0 +1,472 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Dr. Pooja's Dental Studio | Premium 3D Dentistry Boston</title>
+  <meta name="description" content="Experience advanced, gentle dental care in Boston with Dr. Pooja. Specializing in cosmetic, restorative, and preventive dentistry with state-of-the-art 3D technology.">
+  
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Outfit:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+  
+  <!-- Styling -->
+  <link rel="stylesheet" href="styles.css">
+  
+  <!-- Lucide Icons (CDN) -->
+  <script src="https://unpkg.com/lucide@latest"></script>
+
+  <!-- Three.js (Global CDN) -->
+  <script src="https://unpkg.com/three@0.147.0/build/three.min.js"></script>
+</head>
+<body>
+
+  <!-- Background Cinematic Video (Veo 3 Particle Style) -->
+  <div class="video-bg-container">
+    <video autoplay muted loop playsinline class="video-bg">
+      <source src="https://assets.mixkit.co/videos/preview/mixkit-abstract-glowing-particles-loop-41762-large.mp4" type="video/mp4">
+    </video>
+    <div class="video-overlay"></div>
+  </div>
+
+  <!-- Background 3D WebGL Canvas for Teeth Generation -->
+  <canvas id="canvas-3d"></canvas>
+
+  <!-- Background Glowing Blobs -->
+  <div class="blob-bg blob-1"></div>
+  <div class="blob-bg blob-2"></div>
+  <div class="blob-bg blob-3"></div>
+
+  <!-- Header / Navigation -->
+  <header class="header">
+    <div class="header-container">
+      <a href="#" class="logo">
+        <span class="logo-icon"><i data-lucide="sparkles"></i></span>
+        <span class="logo-text">Pooja<span>Dental</span></span>
+      </a>
+      <nav class="nav">
+        <a href="#hero" class="nav-link active">Home</a>
+        <a href="#about" class="nav-link">About</a>
+        <a href="#services" class="nav-link">Services</a>
+        <a href="#interactive" class="nav-link">3D Lab</a>
+        <a href="#contact" class="nav-link nav-btn">Book Appointment</a>
+      </nav>
+      <button class="menu-toggle" id="menu-toggle" aria-label="Toggle Menu">
+        <i data-lucide="menu"></i>
+      </button>
+    </div>
+  </header>
+
+  <!-- Mobile Menu -->
+  <div class="mobile-menu" id="mobile-menu">
+    <a href="#hero" class="mobile-link">Home</a>
+    <a href="#about" class="mobile-link">About</a>
+    <a href="#services" class="mobile-link">Services</a>
+    <a href="#interactive" class="mobile-link">3D Lab</a>
+    <a href="#contact" class="mobile-link mobile-btn">Book Appointment</a>
+  </div>
+
+  <!-- Hero Section -->
+  <section id="hero" class="hero-section">
+    <div class="hero-container">
+      <div class="hero-content">
+        <div class="badge">
+          <i data-lucide="map-pin" class="badge-icon"></i> Boston, MA
+        </div>
+        <h1 class="hero-title">
+          Redefining Your Smile with <span class="gradient-text">Precision & Art</span>
+        </h1>
+        <p class="hero-description">
+          Experience dental excellence in Boston. Dr. Pooja combines state-of-the-art WebGL/3D technology with a gentle, patient-focused approach to craft healthier, brighter smiles.
+        </p>
+        <div class="hero-actions">
+          <a href="#contact" class="btn btn-primary">
+            <span>Book Consultation</span>
+            <i data-lucide="arrow-right"></i>
+          </a>
+          <a href="#interactive" class="btn btn-secondary">
+            <span>Explore 3D Lab</span>
+            <i data-lucide="cpu"></i>
+          </a>
+        </div>
+        <div class="hero-stats">
+          <div class="stat-item">
+            <span class="stat-num">15+</span>
+            <span class="stat-lbl">Years Experience</span>
+          </div>
+          <div class="stat-item">
+            <span class="stat-num">5k+</span>
+            <span class="stat-lbl">Happy Patients</span>
+          </div>
+          <div class="stat-item">
+            <span class="stat-num">99%</span>
+            <span class="stat-lbl">Satisfaction Rate</span>
+          </div>
+        </div>
+      </div>
+      
+      <!-- Interactive WebGL Canvas Container -->
+      <div class="hero-visual">
+        <div class="canvas-wrapper-placeholder">
+          <div class="canvas-hint">
+            <i data-lucide="mouse-pointer-click"></i>
+            <span>Hover & drag to interact with the tooth particles</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- About Section -->
+  <section id="about" class="about-section">
+    <div class="container">
+      <div class="about-grid">
+        <div class="about-visual">
+          <div class="about-image-card">
+            <div class="dr-pooja-avatar">
+              <i data-lucide="user" class="avatar-icon"></i>
+            </div>
+            <div class="dr-pooja-info">
+              <h3>Dr. Pooja</h3>
+              <p>DDS, Columbia University</p>
+              <span class="loc-tag"><i data-lucide="map-pin"></i> Boston Clinical Director</span>
+            </div>
+          </div>
+        </div>
+        <div class="about-content">
+          <div class="section-tag">About The Dentist</div>
+          <h2 class="section-title">Meet Dr. Pooja</h2>
+          <p class="about-paragraph">
+            Dr. Pooja is a leading practitioner in cosmetic and restorative dentistry based in Boston. Committed to biological dentistry and modern technical diagnostics, she combines standard clinical wisdom with computer-guided dental modeling.
+          </p>
+          <p class="about-paragraph">
+            Our clinic is equipped with the latest 3D digital scanners and intraoral cameras, allowing us to map your dental structure with microscopic precision. Every treatment plan is tailored to the unique anatomy of your teeth, ensuring maximum comfort and lasting results.
+          </p>
+          <div class="about-features">
+            <div class="feature-bullet">
+              <div class="bullet-icon"><i data-lucide="check-circle-2"></i></div>
+              <div class="bullet-text">
+                <strong>Advanced 3D Imaging:</strong> Full mouth micro-scans for absolute diagnostic precision.
+              </div>
+            </div>
+            <div class="feature-bullet">
+              <div class="bullet-icon"><i data-lucide="check-circle-2"></i></div>
+              <div class="bullet-text">
+                <strong>Minimally Invasive:</strong> Preserving natural tooth structure through laser and micro-dentistry.
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Services Section -->
+  <section id="services" class="services-section">
+    <div class="container">
+      <div class="section-header">
+        <div class="section-tag">Clinical Offerings</div>
+        <h2 class="section-title text-center">Modern Dental Services</h2>
+        <p class="section-subtitle">Combining artistic detail with advanced dental science for outstanding patient outcomes.</p>
+      </div>
+
+      <div class="services-grid">
+        <!-- Service 1 -->
+        <div class="service-card">
+          <div class="service-icon-wrapper">
+            <i data-lucide="sparkles" class="service-icon"></i>
+          </div>
+          <h3 class="service-card-title">Cosmetic Dentistry</h3>
+          <p class="service-card-description">
+            Brighten and refine your smile. We provide state-of-the-art porcelain veneers, customized teeth whitening, and complete aesthetic smile design.
+          </p>
+          <a href="#contact" class="service-link">Learn More <i data-lucide="chevron-right"></i></a>
+        </div>
+
+        <!-- Service 2 -->
+        <div class="service-card">
+          <div class="service-icon-wrapper">
+            <i data-lucide="shield-check" class="service-icon"></i>
+          </div>
+          <h3 class="service-card-title">Preventive Care</h3>
+          <p class="service-card-description">
+            Maintain optimal oral health with deep hygienic cleanings, early-detection digital X-rays, and comprehensive biological screenings.
+          </p>
+          <a href="#contact" class="service-link">Learn More <i data-lucide="chevron-right"></i></a>
+        </div>
+
+        <!-- Service 3 -->
+        <div class="service-card">
+          <div class="service-icon-wrapper">
+            <i data-lucide="activity" class="service-icon"></i>
+          </div>
+          <h3 class="service-card-title">Restorative Dentistry</h3>
+          <p class="service-card-description">
+            Rebuild function and structure. High-durability dental crowns, metal-free implants, composite fillings, and microscopic root canal therapies.
+          </p>
+          <a href="#contact" class="service-link">Learn More <i data-lucide="chevron-right"></i></a>
+        </div>
+
+        <!-- Service 4 -->
+        <div class="service-card">
+          <div class="service-icon-wrapper">
+            <i data-lucide="smile" class="service-icon"></i>
+          </div>
+          <h3 class="service-card-title">Clear Orthodontics</h3>
+          <p class="service-card-description">
+            Straighten your teeth invisibly with orthodontic aligners custom-mapped using our 3D visualization systems for faster, predictable results.
+          </p>
+          <a href="#contact" class="service-link">Learn More <i data-lucide="chevron-right"></i></a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Interactive 3D Showcase (Particle Laboratory) -->
+  <section id="interactive" class="interactive-section">
+    <div class="container">
+      <div class="interactive-grid">
+        <div class="interactive-content">
+          <div class="section-tag">Interactive Demo</div>
+          <h2 class="section-title">The 3D Particle Lab</h2>
+          <p class="interactive-paragraph">
+            Interact with our simulated dental model below. Under the supervision of Dr. Pooja, we use computerized mapping to plan treatments. Click the operations below to see how our systems simulate tooth adjustments and procedures.
+          </p>
+          
+          <div class="control-panel">
+            <button class="control-btn active" data-action="reset">
+              <i data-lucide="rotate-ccw"></i>
+              <div class="btn-text">
+                <strong>Standard Molar</strong>
+                <span>Idle particle structure</span>
+              </div>
+            </button>
+            
+            <button class="control-btn" data-action="scan">
+              <i data-lucide="scan-line"></i>
+              <div class="btn-text">
+                <strong>Intraoral Scan</strong>
+                <span>Holographic laser wave mapping</span>
+              </div>
+            </button>
+            
+            <button class="control-btn" data-action="clean">
+              <i data-lucide="sparkles"></i>
+              <div class="btn-text">
+                <strong>Deep Polish</strong>
+                <span>Interactive sparkling effect</span>
+              </div>
+            </button>
+            
+            <button class="control-btn" data-action="align">
+              <i data-lucide="git-commit"></i>
+              <div class="btn-text">
+                <strong>Smile Morph</strong>
+                <span>Reshape particles into smile curve</span>
+              </div>
+            </button>
+          </div>
+
+          <div class="lab-metrics">
+            <div class="metric">
+              <span class="metric-val" id="particle-count">2,500</span>
+              <span class="metric-lbl">Active Particles</span>
+            </div>
+            <div class="metric">
+              <span class="metric-val" id="fps-counter">60</span>
+              <span class="metric-lbl">Render FPS</span>
+            </div>
+            <div class="metric">
+              <span class="metric-val" id="scan-accuracy">99.8%</span>
+              <span class="metric-lbl">Scan Resolution</span>
+            </div>
+          </div>
+        </div>
+        
+        <!-- Large Canvas view linked to the same engine or duplicate rendering -->
+        <div class="interactive-visual">
+          <div class="lab-canvas-container">
+            <div class="lab-canvas-overlay">
+              <span class="status-indicator"><span class="pulse"></span> System Ready</span>
+              <span class="engine-tag">THREE.js WebGL Engine</span>
+            </div>
+            <div class="canvas-placeholder-instructions">
+              <i data-lucide="eye" class="eye-icon"></i>
+              <p>Visualizing Dr. Pooja's 3D Particle Cloud. Hover/Drag to manipulate, click buttons to activate scripts.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Testimonials Section -->
+  <section class="testimonials-section">
+    <div class="container">
+      <div class="section-header">
+        <div class="section-tag">Patient Testimonials</div>
+        <h2 class="section-title text-center">Loved by Boston Patients</h2>
+      </div>
+      
+      <div class="testimonials-slider">
+        <div class="testimonial-card">
+          <div class="stars"><i data-lucide="star"></i><i data-lucide="star"></i><i data-lucide="star"></i><i data-lucide="star"></i><i data-lucide="star"></i></div>
+          <p class="quote">
+            "Dr. Pooja is phenomenal. The 3D imaging she used during my scan allowed me to see exactly what was going on. The treatment was painless and the results are amazing."
+          </p>
+          <div class="author">
+            <div class="author-details">
+              <strong>Marcus Vance</strong>
+              <span>Boston Resident</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="testimonial-card">
+          <div class="stars"><i data-lucide="star"></i><i data-lucide="star"></i><i data-lucide="star"></i><i data-lucide="star"></i><i data-lucide="star"></i></div>
+          <p class="quote">
+            "I've always had anxiety about dentist visits, but Dr. Pooja's gentle technique and high-tech setup made me feel completely at ease. Highly recommend her office!"
+          </p>
+          <div class="author">
+            <div class="author-details">
+              <strong>Elena Rostova</strong>
+              <span>Software Engineer</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Contact & Booking Section -->
+  <section id="contact" class="contact-section">
+    <div class="container">
+      <div class="contact-grid">
+        <div class="contact-info">
+          <div class="section-tag">Get In Touch</div>
+          <h2 class="section-title">Schedule Your Consultation</h2>
+          <p class="contact-intro">
+            Ready for a healthier, more confident smile? Fill out the scheduling request, and Dr. Pooja's clinical team will reach out to confirm your booking date.
+          </p>
+          
+          <div class="contact-details">
+            <div class="contact-item">
+              <div class="contact-icon-box"><i data-lucide="mail"></i></div>
+              <div class="contact-text">
+                <span>Email Us</span>
+                <a href="mailto:charanmandela5@gmail.com">charanmandela5@gmail.com</a>
+              </div>
+            </div>
+            
+            <div class="contact-item">
+              <div class="contact-icon-box"><i data-lucide="map-pin"></i></div>
+              <div class="contact-text">
+                <span>Our Studio</span>
+                <p>100 Beacon St, Boston, MA 02116</p>
+              </div>
+            </div>
+
+            <div class="contact-item">
+              <div class="contact-icon-box"><i data-lucide="clock"></i></div>
+              <div class="contact-text">
+                <span>Operating Hours</span>
+                <p>Mon - Fri: 8:00 AM - 6:00 PM</p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="contact-form-wrapper">
+          <form class="booking-form" id="booking-form">
+            <h3 class="form-title">Request Appointment</h3>
+            
+            <div class="form-row">
+              <div class="form-group">
+                <label for="name">Full Name</label>
+                <input type="text" id="name" required placeholder="John Doe">
+              </div>
+              <div class="form-group">
+                <label for="email">Email Address</label>
+                <input type="email" id="email" required placeholder="john@example.com">
+              </div>
+            </div>
+
+            <div class="form-row">
+              <div class="form-group">
+                <label for="phone">Phone Number</label>
+                <input type="tel" id="phone" required placeholder="(617) 555-0199">
+              </div>
+              <div class="form-group">
+                <label for="date">Preferred Date</label>
+                <input type="date" id="date" required>
+              </div>
+            </div>
+
+            <div class="form-group">
+              <label for="service">Select Service</label>
+              <select id="service" required>
+                <option value="" disabled selected>Choose a dental offering...</option>
+                <option value="cosmetic">Cosmetic Dentistry / Whitening</option>
+                <option value="preventive">Routine Cleaning / Preventive</option>
+                <option value="restorative">Dental Crown / Implant / Restoration</option>
+                <option value="orthodontics">Invisalign / Aligners</option>
+              </select>
+            </div>
+
+            <div class="form-group">
+              <label for="notes">Symptom Notes / Special Requests</label>
+              <textarea id="notes" rows="4" placeholder="Let us know how we can help you..."></textarea>
+            </div>
+
+            <button type="submit" class="btn btn-submit" id="submit-btn">
+              <span>Submit Request</span>
+              <i data-lucide="calendar"></i>
+            </button>
+          </form>
+
+          <!-- Form Success Overlay -->
+          <div class="form-success-overlay" id="success-overlay">
+            <div class="success-content">
+              <div class="success-icon"><i data-lucide="check-circle-2"></i></div>
+              <h3>Appointment Request Sent!</h3>
+              <p>Thank you. Your request has been sent to Dr. Pooja's booking desk at <strong>charanmandela5@gmail.com</strong>. We will contact you shortly.</p>
+              <button class="btn btn-primary" id="success-close-btn">Close</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-top">
+        <a href="#" class="logo">
+          <span class="logo-icon"><i data-lucide="sparkles"></i></span>
+          <span class="logo-text">Pooja<span>Dental</span></span>
+        </a>
+        <div class="footer-links">
+          <a href="#hero">Home</a>
+          <a href="#about">About</a>
+          <a href="#services">Services</a>
+          <a href="#interactive">3D Lab</a>
+          <a href="#contact">Contact</a>
+        </div>
+      </div>
+      <div class="footer-divider"></div>
+      <div class="footer-bottom">
+        <p>&copy; 2026 Dr. Pooja's Dental Studio. Boston, MA. All rights reserved.</p>
+        <p>Inquiries: <a href="mailto:charanmandela5@gmail.com">charanmandela5@gmail.com</a></p>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Core Javascript -->
+  <script src="main.js"></script>
+  <script>
+    lucide.createIcons();
+  </script>
+</body>
+</html>
